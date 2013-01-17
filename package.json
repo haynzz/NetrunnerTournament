@@ -1,0 +1,31 @@
+{
+	"name": "NetRunnerTournament",
+	"version": "0.0.1",
+	"private": true,
+	"author": "Edward Grant <themasternone@gmail.com>",
+	"description": "A tournament paring application for Net Runner",
+	"contributors": [ 
+	],
+	"scripts": {
+		"start": "node ./app"
+	},
+	"repository": {
+		"type": "git",
+		"url": "comming soon"
+	},
+	"keywords": [
+		"Net Runner",
+		"LCG",
+		"Fantasy Flight Games",
+		"FFG"
+	],
+	"dependencies": {
+		"express": "3.0.6",
+		"ejs": "*",
+		"less-middleware": "*"
+	},
+	"license": "MIT",
+	"engine": {
+		"node": ">=0.8"
+	}
+}

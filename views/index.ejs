@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script src="/javascripts/net.js"></script>
+	</head>
+	<body>
+		<div id="content">
+			<h1><a href="/" title="go home" ><%= title %></a></h1>
+			<div class="chooseEvent">
+				<table cellspacing="0" cellpadding="0">
+					<thead>
+						<tr>
+							<td>Event Name</td>
+							<td>Date</td>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div class="newEvent">
+				<p>
+					<label for="name">Event Name</label>
+					<input type="text" id="name" />
+				</p>
+				<p><input type="button" value="Start new event" class="submit"/></p>
+			</div>
+			<div class="addPlayesForm">
+				<form>
+					<div class="player">
+						<p>
+							<label for="name">Name</label>
+							<input type="text" id="name" />
+						</p>
+						<p>
+							<label for="email">Email</label>
+							<input type="email" id="email" />
+						</p>
+						<p>
+							<input type="button" value="+" />
+							<input type="button" value="-" />
+						</p>
+						<div class="clearFix"></div>
+					</div>
+					<div class="save">
+						<p>
+							<input type="button" value="Save Players" class="submit"/>
+						</p>
+						<p>
+							<input type="button" value="Fill with dummyPlayers data" class="dummyPlayers"/>
+						</p>
+						<div class="clearFix"></div>
+					</div>
+				</form>
+			</div>
+			<a href="" class="forkOnGitHub">
+				<img src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork me on GitHub">
+			</a>
+		</div>
+	</body>
+</html>

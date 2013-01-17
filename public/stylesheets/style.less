@@ -1,0 +1,60 @@
+@color: #00B7FF;
+
+.clearFix{
+	clear: both;
+}
+body{
+	font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+	font-size: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+a{
+	color: @color;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+h1{
+	font-size: 2em;
+	line-height: 1.25em;
+	margin: 1.25em 0;
+	padding: 0;
+}
+#content{
+	margin: 0 auto;
+	width: 75em;
+	h1{
+		margin: 1.25em 0 0;
+	}
+	.chooseEvent{
+		display: none;
+	}
+	.newEvent{
+		display: none;
+	}
+	.addPlayesForm{
+		display: none;
+		.player{
+			p{
+				float: left;
+				margin: 1em 0 0;
+				input{
+					margin: 0 1em 0 0;
+				}
+				input[type="button"]{
+					margin: 0 -2px;
+				}
+			}
+		}
+	}
+	.forkOnGitHub{
+		border: 1px solid green;
+		left: 0;
+		position: absolute;
+		top: 0;
+	}
+}
