@@ -1,7 +1,16 @@
+var formatdate = function( d ){
+	var d     = new Date( d ),
+		year  = d.getFullYear(),
+		month = d.getMonth() + 1,
+		day   = d.getDate();
+	return year + '.' + month + '.' + day;
+}
+
 var listEvents = function( data ){
+	$( '.chooseEvent tbody' ).empty();
 	for( n in data.events ){
 		$( '.chooseEvent tbody' ).append( 
-			'<tr><td>' + data.events
+			'<tr><td>' + data.events[n].name + '</td><td>' + formatdate( data.events[n].dateCreated ) + '</td></tr>'
 		)
 	}
 }
@@ -91,6 +100,10 @@ $( document ).ready( function(){
 		}).success( function( data ){
 			whatToShow( data );
 		});
+	});
+	$( '.chooseEvent .submit' ).on( 'click', function(){
+		$( '.chooseEvent' ).hide();
+		$( '.newEvent' ) .show();
 	});
 	/**
 	 * This function adds some dummyPlayers plyers for testing
