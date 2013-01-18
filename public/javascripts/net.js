@@ -12,6 +12,20 @@ var listEvents = function( data ){
 		$( '.chooseEvent tbody' ).append( 
 			'<tr><td>' + data.events[n].name + '</td><td>' + formatdate( data.events[n].dateCreated ) + '</td></tr>'
 		)
+		if( data.events[n].players && data.events[n].players.length > 0 ){
+			$( '.chooseEvent tbody tr' ).last().append(
+				'<td><a href="javascript:void(0);" class="showPlayers">Show Players</a></td>'
+			);
+			for( m in data.events[n].players ){
+				$( '.chooseEvent tbody' ).append(
+					'<tr class="players"><td>' + data.events[n].players[m].name + '</td></tr>'
+				);
+			}
+		} else {
+			$( '.chooseEvent tbody tr' ).last().append(
+				'<td><a href="javascript:void(0);" class="addPlayers">Add Players</a></td>'
+			);
+		}
 	}
 }
 
