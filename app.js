@@ -32,7 +32,7 @@ app.configure( 'development', function(){
 app.get( '/', routes.index );
 app.get( '/data', routes.getData );
 app.post( '/addPlayers', routes.addPlayers );
-app.post( '/newEvent', routes.newEvent );
+app.post( '/addEvent', routes.addEvent );
 
 http.createServer(app).listen(app.get('port'), function(){
 	console.log("Express server listening to %s on port %d in %s mode", app.get( 'host' ), app.get( 'port' ), app.settings.env );

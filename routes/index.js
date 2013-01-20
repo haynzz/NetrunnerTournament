@@ -35,10 +35,10 @@ var addPlayers = function( req, res ){
 	});
 }
 
-var newEvent = function( req, res ){
+var addEvent = function( req, res ){
 	data.read( function( error, savedData ){
 		var parsed = JSON.parse( req.body.data );
-		parsed.dateCreated = date.today();
+		parsed.dateCreated = date.parse( parsed.dateCreated );
 		if( !savedData.events ) savedData.events = [];
 		savedData.events.push( parsed );
 		data.write( savedData );
@@ -49,4 +49,4 @@ var newEvent = function( req, res ){
 exports.index   = index;
 exports.getData = getData;
 exports.addPlayers = addPlayers;
-exports.newEvent = newEvent;
+exports.addEvent = addEvent;

@@ -1,4 +1,5 @@
-@color: #00B7FF;
+@color: #384384;
+@subTextColor: #757575;
 
 .clearFix{
 	clear: both;
@@ -26,7 +27,7 @@ h1{
 }
 #content{
 	margin: 0 auto;
-	width: 75em;
+	width: 60em;
 	h1{
 		margin: 1.25em 0 0;
 	}
@@ -39,11 +40,10 @@ h1{
 			}
 		}
 	}
-	.newEvent{
-		display: none;
-	}
+	.addEvent,
 	.addPlayesForm{
 		display: none;
+		.event,
 		.player{
 			p{
 				float: left;
@@ -53,6 +53,11 @@ h1{
 				}
 				input[type="button"]{
 					margin: 0 -2px;
+				}
+				.subtext{
+					color: @subTextColor;
+					font-size: .5em;
+					font-style:italic
 				}
 			}
 		}

@@ -40,7 +40,7 @@ var whatToShow = function( data ){
 			listEvents( data );
 		} else {
 			console.log( 'there are no events' );
-			$( '.newEvent' ).show();
+			$( '.addEvent' ).show();
 		}
 	}
 }
@@ -104,12 +104,12 @@ $( document ).ready( function(){
 	/**
 	 * This function creates new events
 	 **/
-	$( '.newEvent .submit' ).on( 'click', function(){
-		$( '.newEvent' ).hide();
+	$( '.addEvent .submit' ).on( 'click', function(){
+		$( '.addEvent' ).hide();
 		$.ajax({
-			url      : '/newEvent',
+			url      : '/addEvent',
 			type     : 'POST',
-			data     : 'data=' + JSON.stringify( { name : $( '.newEvent #name' ).val() } ),
+			data     : 'data=' + JSON.stringify( { name : $( '.addEvent #name' ).val(), dateCreated : $( '.addEvent #date' ).val() } ),
 			dataType : 'json' 
 		}).success( function( data ){
 			whatToShow( data );
@@ -117,7 +117,7 @@ $( document ).ready( function(){
 	});
 	$( '.chooseEvent .submit' ).on( 'click', function(){
 		$( '.chooseEvent' ).hide();
-		$( '.newEvent' ) .show();
+		$( '.addEvent' ) .show();
 	});
 	/**
 	 * This function adds some dummyPlayers plyers for testing

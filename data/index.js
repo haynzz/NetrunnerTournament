@@ -2,7 +2,17 @@ var fs   = require( 'fs' );
 
 var write = function( toSave ){
 	var fileName = 'saveData/data.json';
-	fs.writeFile( fileName, JSON.stringify( toSave ));
+	fs.exists( 'savedata/', function( exists ){
+		console.log( 'exists', exists );
+		if( !exists ){
+			fs.mkdir( 'savedata/', function( error, dir ){
+				console.log( error, dir );
+				fs.writeFile( fileName, JSON.stringify( toSave ));
+			});
+		} else {
+			fs.writeFile( fileName, JSON.stringify( toSave ));
+		}
+	});
 }
 
 var read = function( callback ){
