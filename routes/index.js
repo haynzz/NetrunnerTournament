@@ -40,9 +40,20 @@ var addEvent = function( req, res ){
 		var parsed = JSON.parse( req.body.data );
 		parsed.dateCreated = date.parse( parsed.dateCreated );
 		if( !savedData.events ) savedData.events = [];
-		savedData.events.push( parsed );
-		data.write( savedData );
-		res.end( JSON.stringify( savedData ));
+		// verify that event name is unique
+		var flag = false;
+		for( n in savedData.events ){
+			if( savedData.events[n].name == parsed.name ) flag = true;
+		}
+		if( flag ){
+			savedData.error = 'addEvent';
+			savedData.errorText = 'Event name not unique';
+			res.end( JSON.stringify( savedData ));
+		} else {
+			savedData.events.push( parsed );
+			data.write( savedData );
+			res.end( JSON.stringify( savedData ));
+		}
 	});
 }
 

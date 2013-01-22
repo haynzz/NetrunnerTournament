@@ -14,7 +14,8 @@ var listEvents = function( data ){
 		)
 		if( data.events[n].players && data.events[n].players.length > 0 ){
 			$( '.chooseEvent tbody tr' ).last().append(
-				'<td><a href="javascript:void(0);" class="showPlayers">Show Players</a></td>'
+				'<td><a href="javascript:void(0);" class="showPlayers">Show Players</a></td>' +
+				'<td><a href="javascript:void(0);" class="addPlayers">Add Players</a></td>'
 			);
 			for( m in data.events[n].players ){
 				$( '.chooseEvent tbody' ).append(
@@ -23,6 +24,7 @@ var listEvents = function( data ){
 			}
 		} else {
 			$( '.chooseEvent tbody tr' ).last().append(
+				'<td></td>' +
 				'<td><a href="javascript:void(0);" class="addPlayers">Add Players</a></td>'
 			);
 		}
@@ -31,6 +33,11 @@ var listEvents = function( data ){
 
 var whatToShow = function( data ){
 	console.log( 'inside what to show', data );
+	if( data.error && data.errorText ){
+		$( '.error' ).empty().html( data.errorText ).show();
+	} else {
+		$( '.error' ).hide();
+	}
 	if( !data.players || data.players.length <= 0 ){
 		$( '.addPlayesForm' ).show();
 	} else {
@@ -119,6 +126,19 @@ $( document ).ready( function(){
 		$( '.chooseEvent' ).hide();
 		$( '.addEvent' ) .show();
 	});
+
+	/**
+	 * This function assigns players to events
+	 **/
+	 $( '.chooseEvent table' ).on( 'click', function( event ){
+ 		if(  event.target.attributes && event.target.attributes.length >= 2 ){
+ 			if( $( event.target ).hasClass( 'addPlayers' )){
+				var cPos = $( event.target ).parents( 'tr' ).index();
+				console.log( cPos );
+			}
+		}
+	 });
+
 	/**
 	 * This function adds some dummyPlayers plyers for testing
 	 **/
