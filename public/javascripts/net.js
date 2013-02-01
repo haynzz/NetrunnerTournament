@@ -11,7 +11,7 @@ var listEvents = function( data ){
 	for( n in data.events ){
 		$( '.chooseEvent tbody' ).append( 
 			'<tr><td>' + data.events[n].name + '</td><td>' + formatdate( data.events[n].dateCreated ) + '</td></tr>'
-		)
+		);
 		if( data.events[n].players && data.events[n].players.length > 0 ){
 			$( '.chooseEvent tbody tr' ).last().append(
 				'<td><a href="javascript:void(0);" class="showPlayers">Show Players</a></td>' +
@@ -19,7 +19,7 @@ var listEvents = function( data ){
 			);
 			for( m in data.events[n].players ){
 				$( '.chooseEvent tbody' ).append(
-					'<tr class="players"><td>' + data.events[n].players[m].name + '</td></tr>'
+					'<tr class="players"><td>' + data.events[n].players[m].name + '</td><td>' + data.events[n].players[m].email + '</td></tr>'
 				);
 			}
 		} else {
@@ -31,20 +31,36 @@ var listEvents = function( data ){
 	}
 }
 
+var listPlayers = function( data, eventPos ){
+	$( '.selectPlayers tbody' ).empty();
+	for( n in data.players ){
+		var flag = true;
+		for( m in data.events[eventPos].players ){
+			flag = data.players[n].email == data.events[eventPos].players[m].email ? false : true;
+		}
+		if( flag ){
+			$( '.selectPlayers tbody' ).append(
+				'<tr><td><input type="checkbox"/>' + data.players[n].name + '</td><td>' + data.players[n].email + '</td></tr>'
+			);
+		}
+	}
+}
+
 var whatToShow = function( data ){
-	console.log( 'inside what to show', data );
-	if( data.error && data.errorText ){
-		$( '.error' ).empty().html( data.errorText ).show();
+	window.data = data
+	console.log( 'inside what to show', window.data );
+	if( window.data.error && window.data.errorText ){
+		$( '.error' ).empty().html( window.data.errorText ).show();
 	} else {
 		$( '.error' ).hide();
 	}
-	if( !data.players || data.players.length <= 0 ){
+	if( !window.data.players || window.data.players.length <= 0 ){
 		$( '.addPlayesForm' ).show();
 	} else {
-		if( data.events && data.events.length > 0 ){
+		if( window.data.events && window.data.events.length > 0 ){
 			console.log( 'there are events' );
 			$( '.chooseEvent' ).show();
-			listEvents( data );
+			listEvents( window.data );
 		} else {
 			console.log( 'there are no events' );
 			$( '.addEvent' ).show();
@@ -131,13 +147,18 @@ $( document ).ready( function(){
 	 * This function assigns players to events
 	 **/
 	 $( '.chooseEvent table' ).on( 'click', function( event ){
- 		if(  event.target.attributes && event.target.attributes.length >= 2 ){
- 			if( $( event.target ).hasClass( 'addPlayers' )){
-				var cPos = $( event.target ).parents( 'tr' ).index();
-				console.log( cPos );
-			}
+		if( $( event.target ).hasClass( 'addPlayers' )){
+			$( '.chooseEvent' ).hide();
+			$( '.selectPlayers' ).show();
+			var eventPos = $( event.target ).parents( 'tr' ).index();
+			console.log( eventPos );
+			listPlayers( window.data, eventPos );
 		}
 	 });
+	$( '.selectPlayers .submit' ).on( 'click', function(){
+		$( '.selectPlayers' ).hide();
+		$( '.addPlayesForm' ) .show();
+	});
 
 	/**
 	 * This function adds some dummyPlayers plyers for testing
